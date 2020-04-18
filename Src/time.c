@@ -26,6 +26,10 @@
  * version: 1.0 demo (7.02.2015)
  */
 
+
+#include <stdint.h>
+
+#include "stm32f4xx_hal.h"
 #include "time.h"
 
 volatile uint32_t sysTimeTicks;

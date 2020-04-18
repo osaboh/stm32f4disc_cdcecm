@@ -12,7 +12,12 @@
 #include "lwip/tcp_impl.h"
 #include "lwip/tcp.h"
 #include "time.h"
+#include "httpd.h"
+#include "dhserver.h"
+#include "dnserver.h"
+
 #include "usbd_ecm.h"
+#include "eth.h"
 
 
 
@@ -22,6 +27,23 @@ static uint8_t ipaddr[4]  = {192, 168, 7, 1};
 static uint8_t netmask[4] = {255, 255, 255, 0};
 static uint8_t gateway[4] = {0, 0, 0, 0};
 static struct pbuf *received_frame;
+
+static dhcp_entry_t entries[] =
+{
+    /* mac    ip address        subnet mask        lease time */
+    { {0}, {192, 168, 7, 2}, {255, 255, 255, 0}, 24 * 60 * 60 },
+    { {0}, {192, 168, 7, 3}, {255, 255, 255, 0}, 24 * 60 * 60 },
+    { {0}, {192, 168, 7, 4}, {255, 255, 255, 0}, 24 * 60 * 60 }
+};
+
+static dhcp_config_t dhcp_config =
+{
+    {192, 168, 7, 1}, 67, /* server address, port */
+    {192, 168, 7, 1},     /* dns server */
+    "stm",                /* dns suffix */
+    sizeof(entries) / sizeof(*entries),  /* num entry */
+    entries               /* entries */
+};
 
 /* this function is called by usbd_ecm.c during an ISR; it must not block */
 void usb_ecm_recv_callback(const uint8_t *data, int size)
@@ -138,15 +160,15 @@ static const char *ssi_tags_table[] =
     "charlie"  /* 3 */
 };
 
-/* static const tCGI cgi_uri_table[] = */
-/* { */
-/*     { "/state.cgi", state_cgi_handler }, */
-/*     { "/ctl.cgi",   ctl_cgi_handler }, */
-/* }; */
+static const tCGI cgi_uri_table[] =
+{
+    { "/state.cgi", state_cgi_handler },
+    { "/ctl.cgi",   ctl_cgi_handler },
+};
 
 static u16_t ssi_handler(int index, char *insert, int ins_len)
 {
-    int res;
+    int res = 0; 				/* todo check valid value */
 
     if (ins_len < 32) return 0;
 
@@ -191,4 +213,28 @@ static void service_traffic(void)
 
   /* tell usbd_ecm.c it is OK to receive another packet */
   usb_ecm_recv_renew();
+}
+
+
+
+void start_server(void)
+{
+	time_init();
+	init_lwip();
+
+	while (!netif_is_up(&netif_data));
+
+	while (dhserv_init(&dhcp_config) != ERR_OK);
+
+	while (dnserv_init(PADDR(ipaddr), 53, dns_query_proc) != ERR_OK);
+
+	http_set_cgi_handlers(cgi_uri_table, sizeof(cgi_uri_table) / sizeof(*cgi_uri_table));
+	http_set_ssi_handler(ssi_handler, ssi_tags_table, sizeof(ssi_tags_table) / sizeof(*ssi_tags_table));
+	httpd_init();
+
+	for (;;)
+	{
+		service_traffic();
+		stmr();
+	}
 }

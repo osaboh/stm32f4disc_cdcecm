@@ -36,52 +36,47 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Src/main.c \
-Core/Src/gpio.c \
 Core/Src/dma.c \
+Core/Src/gpio.c \
 Core/Src/i2c.c \
+Core/Src/main.c \
 Core/Src/rtc.c \
 Core/Src/spi.c \
-Core/Src/usart.c \
-Core/Src/stm32f4xx_it.c \
 Core/Src/stm32f4xx_hal_msp.c \
 Core/Src/stm32f4xx_hal_timebase_tim.c \
-USB_DEVICE/App/usb_device.c \
-USB_DEVICE/App/usbd_desc.c \
-USB_DEVICE/Target/usbd_conf.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
+Core/Src/stm32f4xx_it.c \
+Core/Src/system_stm32f4xx.c \
+Core/Src/usart.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ramfunc.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
-Core/Src/system_stm32f4xx.c \
+Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c \
+Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
-USB_DEVICE/App/usbd_cdc_if.c \
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
-Src/eth.c \
-Src/time.c \
-USB_DEVICE/App/usbd_ecm.c \
+lwip-1.4.1/apps/httpserver_raw/fs.c \
+lwip-1.4.1/apps/httpserver_raw/httpd.c \
 lwip-1.4.1/src/api/api_lib.c \
 lwip-1.4.1/src/api/api_msg.c \
 lwip-1.4.1/src/api/err.c \
@@ -113,7 +108,19 @@ lwip-1.4.1/src/core/tcp.c \
 lwip-1.4.1/src/core/tcp_in.c \
 lwip-1.4.1/src/core/tcp_out.c \
 lwip-1.4.1/src/core/timers.c \
-lwip-1.4.1/src/core/udp.c
+lwip-1.4.1/src/core/udp.c \
+lwip-1.4.1/src/netif/etharp.c \
+lwip-1.4.1/src/netif/ethernetif.c \
+lwip-1.4.1/src/netif/slipif.c \
+USB_DEVICE/App/usb_device.c \
+USB_DEVICE/App/usbd_cdc_if.c \
+USB_DEVICE/App/usbd_desc.c \
+USB_DEVICE/App/usbd_ecm.c \
+USB_DEVICE/Target/usbd_conf.c \
+Src/eth.c \
+Src/time.c \
+Src/dhcp-server/dhserver.c \
+Src/dns-server/dnserver.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -184,6 +191,9 @@ C_INCLUDES =  \
 -IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
 -Ilwip-1.4.1/src/include \
 -Ilwip-1.4.1/src/include/ipv4 \
+-Ilwip-1.4.1/apps/httpserver_raw \
+-ISrc/dhcp-server \
+-ISrc/dns-server \
 -IInc
 
 
