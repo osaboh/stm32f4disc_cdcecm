@@ -38,7 +38,6 @@
 /* array of callback functions invoked by USBD_RegisterClass() in main.c */
 extern const USBD_ClassTypeDef USBD_ECM;
 
-uint8_t USBD_ECM_RegisterInterface(USBD_HandleTypeDef *pdev);
 void USBD_ECM_PMAConfig(PCD_HandleTypeDef *hpcd, uint32_t *pma_address);
 
 void usb_ecm_recv_callback(const uint8_t *data, int size);

@@ -45,7 +45,6 @@ The user then calls usb_ecm_xmit_packet() to transmit such a packet.
 /* USB handle declared in main.c */
 extern USBD_HandleTypeDef USBD_Device;
 
-extern void ECM_ReceivePacket(unsigned index, uint8_t *data, uint16_t length);
 
 /* local function prototyping */
 
@@ -57,8 +56,6 @@ static uint8_t USBD_ECM_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t USBD_ECM_EP0_RxReady (USBD_HandleTypeDef *pdev);
 static const uint8_t *USBD_ECM_GetFSCfgDesc (uint16_t *length);
 static uint8_t USBD_ECM_SOF (USBD_HandleTypeDef *pdev);
-
-static USBD_StatusTypeDef USBD_ECM_ReceivePacket (USBD_HandleTypeDef *pdev, unsigned index);
 
 /* class callbacks structure that is used by main.c */
 const USBD_ClassTypeDef USBD_ECM =
@@ -241,10 +238,6 @@ static uint8_t USBD_ECM_EP0_RxReady (USBD_HandleTypeDef *pdev)
   return USBD_OK;
 }
 
-
-/* extern const uint8_t *const USBD_CfgFSDesc_pnt; */
-/* extern const uint16_t USBD_CfgFSDesc_len; */
-
 static const uint8_t *USBD_ECM_GetFSCfgDesc (uint16_t *length)
 {
   *length = USBD_CfgFSDesc_len;
@@ -253,22 +246,7 @@ static const uint8_t *USBD_ECM_GetFSCfgDesc (uint16_t *length)
 
 uint8_t USBD_ECM_RegisterInterface(USBD_HandleTypeDef *pdev)
 {
-  unsigned index;
-
   return USBD_OK;
-}
-
-void USBD_ECM_PMAConfig(PCD_HandleTypeDef *hpcd, uint32_t *pma_address)
-{
-  int PCD_SNG_BUF = 0;
-
-  /* allocate PMA memory for all endpoints associated with ECM */
-  HAL_PCDEx_PMAConfig(hpcd, ECM_DATA_IN_EP,  PCD_SNG_BUF, *pma_address);
-  *pma_address += ECM_DATA_IN_SZ;
-  HAL_PCDEx_PMAConfig(hpcd, ECM_DATA_OUT_EP, PCD_SNG_BUF, *pma_address);
-  *pma_address += ECM_DATA_OUT_SZ;
-  HAL_PCDEx_PMAConfig(hpcd, ECM_NOTIFICATION_IN_EP,  PCD_SNG_BUF, *pma_address);
-  *pma_address += ECM_NOTIFICATION_IN_SZ;
 }
 
 bool usb_ecm_can_xmit(void)
