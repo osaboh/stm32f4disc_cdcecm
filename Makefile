@@ -78,7 +78,42 @@ Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
 USB_DEVICE/App/usbd_cdc_if.c \
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c
+Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
+Src/eth.c \
+Src/time.c \
+USB_DEVICE/App/usbd_ecm.c \
+lwip-1.4.1/src/api/api_lib.c \
+lwip-1.4.1/src/api/api_msg.c \
+lwip-1.4.1/src/api/err.c \
+lwip-1.4.1/src/api/netbuf.c \
+lwip-1.4.1/src/api/netdb.c \
+lwip-1.4.1/src/api/netifapi.c \
+lwip-1.4.1/src/api/sockets.c \
+lwip-1.4.1/src/api/tcpip.c \
+lwip-1.4.1/src/core/def.c \
+lwip-1.4.1/src/core/dhcp.c \
+lwip-1.4.1/src/core/dns.c \
+lwip-1.4.1/src/core/init.c \
+lwip-1.4.1/src/core/ipv4/autoip.c \
+lwip-1.4.1/src/core/ipv4/icmp.c \
+lwip-1.4.1/src/core/ipv4/igmp.c \
+lwip-1.4.1/src/core/ipv4/inet.c \
+lwip-1.4.1/src/core/ipv4/inet_chksum.c \
+lwip-1.4.1/src/core/ipv4/ip.c \
+lwip-1.4.1/src/core/ipv4/ip_addr.c \
+lwip-1.4.1/src/core/ipv4/ip_frag.c \
+lwip-1.4.1/src/core/mem.c \
+lwip-1.4.1/src/core/memp.c \
+lwip-1.4.1/src/core/netif.c \
+lwip-1.4.1/src/core/pbuf.c \
+lwip-1.4.1/src/core/raw.c \
+lwip-1.4.1/src/core/stats.c \
+lwip-1.4.1/src/core/sys.c \
+lwip-1.4.1/src/core/tcp.c \
+lwip-1.4.1/src/core/tcp_in.c \
+lwip-1.4.1/src/core/tcp_out.c \
+lwip-1.4.1/src/core/timers.c \
+lwip-1.4.1/src/core/udp.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -127,7 +162,8 @@ AS_DEFS =
 # C defines
 C_DEFS =  \
 -DUSE_HAL_DRIVER \
--DSTM32F407xx
+-DSTM32F407xx \
+-DUSE_USB_FS
 
 
 # AS includes
@@ -145,7 +181,10 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
 -IDrivers/CMSIS/Include \
 -IDrivers/CMSIS/Include \
--IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+-IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
+-Ilwip-1.4.1/src/include \
+-Ilwip-1.4.1/src/include/ipv4 \
+-IInc
 
 
 # compile gcc flags
