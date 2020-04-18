@@ -54,11 +54,11 @@ static uint8_t USBD_ECM_Setup (USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *r
 static uint8_t USBD_ECM_DataIn (USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t USBD_ECM_DataOut (USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t USBD_ECM_EP0_RxReady (USBD_HandleTypeDef *pdev);
-static const uint8_t *USBD_ECM_GetFSCfgDesc (uint16_t *length);
+static uint8_t *USBD_ECM_GetFSCfgDesc (uint16_t *length);
 static uint8_t USBD_ECM_SOF (USBD_HandleTypeDef *pdev);
 
 /* class callbacks structure that is used by main.c */
-const USBD_ClassTypeDef USBD_ECM =
+USBD_ClassTypeDef USBD_ECM =
 {
   .Init                  = USBD_ECM_Init,
   .DeInit                = USBD_ECM_DeInit,
@@ -238,7 +238,7 @@ static uint8_t USBD_ECM_EP0_RxReady (USBD_HandleTypeDef *pdev)
   return USBD_OK;
 }
 
-static const uint8_t *USBD_ECM_GetFSCfgDesc (uint16_t *length)
+static uint8_t *USBD_ECM_GetFSCfgDesc (uint16_t *length)
 {
   *length = USBD_CfgFSDesc_len;
   return USBD_CfgFSDesc_pnt;

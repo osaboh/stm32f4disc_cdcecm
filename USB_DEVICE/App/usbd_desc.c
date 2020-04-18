@@ -53,7 +53,7 @@ static uint8_t *USBD_VCP_SerialStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *
 static void IntToUnicode (uint32_t value, uint8_t *pbuf, uint8_t len);
 
 /* Private variables ---------------------------------------------------------*/
-const USBD_DescriptorsTypeDef VCP_Desc =
+USBD_DescriptorsTypeDef VCP_Desc =
 {
   USBD_VCP_DeviceDescriptor,
   USBD_VCP_LangIDStrDescriptor,
@@ -106,7 +106,7 @@ __ALIGN_BEGIN static const struct configuration_1 USBD_ECM_CfgFSDesc __ALIGN_END
   .ecm = ECM_DESCRIPTOR(/* Notify ITF */ 0x00, /* Data ITF */ 0x01, /* Notify EP */ ECM_NOTIFICATION_IN_EP, /* DataOut EP */ ECM_DATA_OUT_EP, /* DataIn EP */ ECM_DATA_IN_EP, /* iMACstring */ USBD_IDX_SERIAL_STR)
 };
 
-const uint8_t *const USBD_CfgFSDesc_pnt = (const uint8_t *)&USBD_ECM_CfgFSDesc;
+uint8_t *USBD_CfgFSDesc_pnt = (uint8_t *)&USBD_ECM_CfgFSDesc;
 const uint16_t USBD_CfgFSDesc_len = sizeof(USBD_ECM_CfgFSDesc);
 
 /* USB Standard Device Descriptor */

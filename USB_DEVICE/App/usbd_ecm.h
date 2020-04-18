@@ -36,7 +36,7 @@
 #define ECM_MTU                     (ECM_MAX_SEGMENT_SIZE - ETH_HEADER_SIZE)
 
 /* array of callback functions invoked by USBD_RegisterClass() in main.c */
-extern const USBD_ClassTypeDef USBD_ECM;
+extern USBD_ClassTypeDef USBD_ECM;
 
 void USBD_ECM_PMAConfig(PCD_HandleTypeDef *hpcd, uint32_t *pma_address);
 
