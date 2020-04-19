@@ -71,7 +71,6 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c \
-Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
@@ -113,7 +112,6 @@ lwip-1.4.1/src/netif/etharp.c \
 lwip-1.4.1/src/netif/ethernetif.c \
 lwip-1.4.1/src/netif/slipif.c \
 USB_DEVICE/App/usb_device.c \
-USB_DEVICE/App/usbd_cdc_if.c \
 USB_DEVICE/App/usbd_desc.c \
 USB_DEVICE/App/usbd_ecm.c \
 USB_DEVICE/Target/usbd_conf.c \
@@ -188,7 +186,6 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
 -IDrivers/CMSIS/Include \
 -IDrivers/CMSIS/Include \
--IMiddlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc \
 -Ilwip-1.4.1/src/include \
 -Ilwip-1.4.1/src/include/ipv4 \
 -Ilwip-1.4.1/apps/httpserver_raw \

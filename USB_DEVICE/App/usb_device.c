@@ -24,8 +24,6 @@
 #include "usb_device.h"
 #include "usbd_core.h"
 #include "usbd_desc.h"
-#include "usbd_cdc.h"
-#include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN Includes */
 #include "main.h"
@@ -78,7 +76,7 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
-  if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
+  if (USBD_ECM_RegisterInterface(&hUsbDeviceFS) != USBD_OK)
   {
     Error_Handler();
   }
